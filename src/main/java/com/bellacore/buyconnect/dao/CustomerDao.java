@@ -1,6 +1,6 @@
 package com.bellacore.buyconnect.dao;
 
-import com.bellacore.buyconnect.model.Customer;
+import com.bellacore.buyconnect.entity.Customer;
 
 import java.util.List;
 

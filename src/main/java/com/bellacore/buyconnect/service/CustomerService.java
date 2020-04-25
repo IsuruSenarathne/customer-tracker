@@ -1,42 +1,19 @@
 package com.bellacore.buyconnect.service;
 
 
-import com.bellacore.buyconnect.dao.CustomerDao;
-import com.bellacore.buyconnect.model.Customer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.bellacore.buyconnect.entity.Customer;
 
 import java.util.List;
 
-@Service("customerService")
-public class CustomerService {
-    @Autowired
-    CustomerDao customerDao;
+public interface CustomerService {
+    List<Customer> getCustomers();
 
-    @Transactional
-    public List<Customer> getCustomers() {
-        return customerDao.getCustomers();
-    }
+    Customer getCustomer(Long customerId);
 
-    @Transactional
-    public Customer getCustomer(int id) {
-        return customerDao.getCustomer(id);
-    }
+    void saveCustomer();
 
-    @Transactional
-    public void addCustomer(Customer customer) {
-        customerDao.addCustomer(customer);
-    }
+    void updateCustomer();
 
-    @Transactional
-    public void updateCustomer(Customer customer) {
-        customerDao.updateCustomer(customer);
+    void deleteCustomer();
 
-    }
-
-    @Transactional
-    public void deleteCustomer(int id) {
-        customerDao.deleteCustomer(id);
-    }
 }

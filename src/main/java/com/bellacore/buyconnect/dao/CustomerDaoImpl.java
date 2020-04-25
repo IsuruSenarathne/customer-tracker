@@ -1,6 +1,6 @@
 package com.bellacore.buyconnect.dao;
 
-import com.bellacore.buyconnect.model.Customer;
+import com.bellacore.buyconnect.entity.Customer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

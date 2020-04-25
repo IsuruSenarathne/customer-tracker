@@ -1,31 +1,29 @@
-package com.bellacore.buyconnect.model;
+package com.bellacore.buyconnect.dto;
 
-import javax.persistence.*;
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
-@Entity
-@Table(name = "customer")
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+public class CustomerDto implements Serializable {
+
+    private static final SimpleDateFormat dateFormat
+            = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
     private Long id;
 
-    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
     private String email;
 
-    public Customer(String firstName, String lastName, String email) {
+    public CustomerDto(Long id, String firstName, String lastName, String email) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
-    public Customer() {
+    public CustomerDto() {
     }
 
     public Long getId() {
@@ -58,15 +56,5 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
     }
 }
