@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1>Cutomers page</h1>
+<h1>Cutomers page</h1>
+<h1>Cutomers page</h1>
+<p>Use this page to control customers in you system</p>
+
+<div class="container">
+    <table>
+        <thead>
+        <th>Fist Name</th>
+        <th>Lase Name</th>
+        <th>Email</th>
+        </thead>
+        <tbody>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.firstName}"></td>
+            <td th:text="${customer.lastName}"></td>
+            <td th:text="${customer.email}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
