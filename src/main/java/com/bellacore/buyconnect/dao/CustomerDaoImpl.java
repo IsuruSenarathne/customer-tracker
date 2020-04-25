@@ -3,6 +3,7 @@ package com.bellacore.buyconnect.dao;
 import com.bellacore.buyconnect.entity.Customer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +28,10 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer getCustomer(int id) {
-        return null;
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Customer where id = :id");
+        query.setParameter("id", id);
+        return (Customer) query.list().get(0);
     }
 
     @Override

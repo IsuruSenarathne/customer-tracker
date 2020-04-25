@@ -29,7 +29,7 @@ public class HibernateConfig {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setPackagesToScan(
-                new String[]{"com.bellacore.buyconnect.model"});
+                new String[]{"com.bellacore.buyconnect.entity"});
         sessionFactory.setHibernateProperties(hibernateProperties());
 
         return sessionFactory;

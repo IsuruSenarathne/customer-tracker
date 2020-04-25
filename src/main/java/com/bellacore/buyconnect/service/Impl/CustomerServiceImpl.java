@@ -15,14 +15,16 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     CustomerDao customerDao;
 
+    @Override
     @Transactional
     public List<Customer> getCustomers() {
         return customerDao.getCustomers();
     }
 
     @Override
-    public Customer getCustomer(Long customerId) {
-        return null;
+    @Transactional
+    public Customer getCustomer(int customerId) {
+        return customerDao.getCustomer(customerId);
     }
 
     @Override

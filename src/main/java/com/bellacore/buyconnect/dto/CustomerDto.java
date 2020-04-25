@@ -8,7 +8,7 @@ public class CustomerDto implements Serializable {
     private static final SimpleDateFormat dateFormat
             = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-    private Long id;
+    private int id;
 
     private String firstName;
 
@@ -16,7 +16,7 @@ public class CustomerDto implements Serializable {
 
     private String email;
 
-    public CustomerDto(Long id, String firstName, String lastName, String email) {
+    public CustomerDto(int id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,11 +26,11 @@ public class CustomerDto implements Serializable {
     public CustomerDto() {
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

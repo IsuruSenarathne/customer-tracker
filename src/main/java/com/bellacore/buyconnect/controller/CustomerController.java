@@ -50,7 +50,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{customerId}")
-    public String getTest(@PathVariable("customerId") Long customerId, Model model){
+    public String getTest(@PathVariable("customerId") int customerId, Model model){
         Customer customer = customerService.getCustomer(customerId);
         CustomerDto customerDto = convertToDto(customer);
         model.addAttribute("customer", customerDto);
