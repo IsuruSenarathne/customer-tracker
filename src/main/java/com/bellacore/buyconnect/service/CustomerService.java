@@ -10,7 +10,7 @@ public interface CustomerService {
 
     Customer getCustomer(int customerId);
 
-    void saveCustomer();
+    void saveCustomer(Customer customer);
 
     void updateCustomer();
 

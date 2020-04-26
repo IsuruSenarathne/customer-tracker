@@ -28,24 +28,23 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer getCustomer(int id) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Customer where id = :id");
         query.setParameter("id", id);
         return (Customer) query.list().get(0);
     }
 
     @Override
-    public Customer addCustomer(Customer customer) {
-        return null;
+    public void addCustomer(Customer customer) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(customer);
     }
 
     @Override
     public void updateCustomer(Customer customer) {
-
     }
 
     @Override
     public void deleteCustomer(int id) {
-
     }
 }

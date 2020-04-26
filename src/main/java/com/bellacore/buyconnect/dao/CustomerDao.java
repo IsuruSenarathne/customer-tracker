@@ -9,7 +9,7 @@ public interface CustomerDao {
 
     public Customer getCustomer(int id) ;
 
-    public Customer addCustomer(Customer customer);
+    public void addCustomer(Customer customer);
 
     public void updateCustomer(Customer customer) ;
 
