@@ -28,6 +28,8 @@
                 <td th:text="${customer.firstName}"></td>
                 <td th:text="${customer.lastName}"></td>
                 <td th:text="${customer.email}"></td>
+                <td><a th:href="@{/customers/update/{id}(id=${customer.id})}">Edit</a></td>
+                <td><a th:href="@{/customers/{id}(id=${customer.id})}">Delete</a></td>
             </tr>
             </tbody>
         </table>

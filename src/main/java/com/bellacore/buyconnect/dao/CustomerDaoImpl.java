@@ -22,7 +22,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public List<Customer> getCustomers() {
         Session session = this.sessionFactory.getCurrentSession();
-        List<Customer>  customers = session.createQuery("from Customer").list();
+        List<Customer>  customers = session.createQuery("from Customer order by lastName").list();
         return customers;
     }
 
@@ -41,10 +41,16 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public void updateCustomer(Customer customer) {
+    public void updateCustomer(Customer customer, int customerId) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(customer);
     }
 
     @Override
-    public void deleteCustomer(int id) {
+    public void deleteCustomer(int customerId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("delete from Customer where id=:customerId");
+        query.setParameter("customerId", customerId);
+        query.executeUpdate();
     }
 }

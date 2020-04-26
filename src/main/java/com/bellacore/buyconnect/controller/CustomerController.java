@@ -43,33 +43,73 @@ public class CustomerController {
     }
 
     @GetMapping("/")
-    public String getTest(HttpServletRequest request, Model model){
+    public String getTest(HttpServletRequest request, Model model) {
         List<Customer> customers = customerService.getCustomers();
         model.addAttribute("customers", customers);
         return "customers";
     }
 
-    @GetMapping("/{customerId}")
-    public String getTest(@PathVariable("customerId") int customerId, Model model){
-        Customer customer = customerService.getCustomer(customerId);
-        CustomerDto customerDto = convertToDto(customer);
-        model.addAttribute("customer", customerDto);
-        return "customer";
-    }
+//    @GetMapping("/{customerId}")
+//    public String getTest(@PathVariable("customerId") int customerId, Model model){
+//        Customer customer = customerService.getCustomer(customerId);
+//        CustomerDto customerDto = convertToDto(customer);
+//        model.addAttribute("customer", customerDto);
+//        return "customer";
+//    }
 
     @GetMapping("/addCustomer")
-    public String addCustomer(Model model){
+    public String addCustomer(Model model) {
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
         return "customer-form";
     }
 
     @PostMapping("/saveCustomer")
-    public String addCustomer(@Valid Customer customer, BindingResult result, Model model){
+    public String addCustomer(@Valid Customer customer, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "customer-form";
         }
         customerService.saveCustomer(customer);
+        model.addAttribute("customers", customerService.getCustomers());
+        return "customers";
+    }
+
+    @GetMapping("/update/{customerId}")
+    public String updateCustomerForm(@PathVariable("customerId") int customerId, Model model) {
+
+        Customer customer = customerService.getCustomer(customerId);
+        if (customer == null) {
+            return "Customer not found";
+        }
+        model.addAttribute("customer", customer);
+        return "update-customer";
+    }
+
+    @PostMapping("/{customerId}")
+    public String updateCustomer(
+            @Valid Customer customerUpdated,
+            @PathVariable("customerId") int customerId,
+            BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "customer-form";
+        }
+        Customer customer = customerService.getCustomer(customerId);
+        if (customer == null){
+            return "No Customer by id";
+        }
+        customerService.updateCustomer(customerUpdated, customerId);
+        model.addAttribute("customers", customerService.getCustomers());
+        return "customers";
+    }
+
+    @GetMapping("/{customerId}")
+    public String deleteCustomer(@PathVariable("customerId") int customerId, Model model) {
+
+        Customer customer = customerService.getCustomer(customerId);
+        if (customer == null) {
+            return "Customer not found";
+        }
+        customerService.deleteCustomer(customerId);
         model.addAttribute("customers", customerService.getCustomers());
         return "customers";
     }
